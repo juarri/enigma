@@ -1,14 +1,14 @@
-import { type NextPage } from "next";
+import {
+  GetServerSideProps,
+  GetServerSidePropsContext,
+  type NextPage,
+} from "next";
+import { getServerAuthSession } from "../server/auth";
+
 import Head from "next/head";
-
-import { api } from "../utils/api";
-
 import Welcome from "../components/Welcome";
-import Dashboard from "../components/Dashboard";
 
 const Home: NextPage = () => {
-  // const hello = api.example.hello.useQuery({ text: "from tRPC" });
-
   return (
     <>
       <Head>
@@ -21,9 +21,27 @@ const Home: NextPage = () => {
       </Head>
 
       <Welcome />
-      <Dashboard />
     </>
   );
 };
 
 export default Home;
+
+export const getServerSideProps: GetServerSideProps = async (
+  ctx: GetServerSidePropsContext
+) => {
+  const session = await getServerAuthSession(ctx);
+
+  if (session?.user) {
+    return {
+      redirect: {
+        destination: `/${session.user.username}`,
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: { session },
+  };
+};

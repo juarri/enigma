@@ -6,8 +6,12 @@ import { api } from "../utils/api";
 
 import "../styles/globals.css";
 
+import { Inter } from "@next/font/google";
+
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+
+const inter = Inter({ subsets: ["latin"] });
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -15,9 +19,11 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
   return (
     <SessionProvider session={session}>
-      <div className="relative flex h-screen w-screen flex-col justify-between bg-neutral-900 text-white">
+      <div
+        className={`${inter.className} relative flex h-screen w-screen flex-col justify-between bg-main-2 text-main-12 dark:bg-maindark-2 dark:text-maindark-12`}
+      >
         <Header />
-        <main className="grid flex-1">
+        <main className="relative flex-1">
           <Component {...pageProps} />
         </main>
         <Footer />

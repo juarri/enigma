@@ -6,29 +6,31 @@ const Header = () => {
   if (!session?.user) return null;
 
   return (
-    <footer className="py-4 px-8">
+    <header className="py-4 px-4 sm:px-6 lg:px-8">
       <div className="flex items-center justify-between">
-        <span className="text-2xl font-bold">Lips 👄</span>
+        <span className="text-2xl font-bold">
+          Lips <span className="text-xl">👄</span>
+        </span>
 
         <div className="flex gap-4">
           <div className="flex items-center gap-2">
             <img
               src={session.user.image || ""}
-              alt={`${session.user.name}'s profile picture`}
+              alt={`${session.user.username}'s profile picture`}
               className="h-8 w-8 rounded-full"
             />
-            <span>{session.user.name}</span>
+            <span>{session.user.username}</span>
           </div>
 
           <button
             onClick={() => signOut()}
-            className="relative inline-flex items-center rounded-md bg-neutral-800 px-4 py-2 text-base font-medium shadow-sm hover:bg-neutral-700"
+            className="relative inline-flex items-center rounded-md bg-main-3 px-4 py-2 font-medium shadow-sm hover:bg-main-4 dark:bg-maindark-3 dark:hover:bg-maindark-4"
           >
             Logout
           </button>
         </div>
       </div>
-    </footer>
+    </header>
   );
 };
 

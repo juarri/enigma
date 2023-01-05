@@ -1,5 +1,6 @@
 import { createTRPCRouter } from "./trpc";
 
+import { usersRouter } from "./routers/users";
 import { lipsRouter } from "./routers/lips";
 
 /**
@@ -8,6 +9,7 @@ import { lipsRouter } from "./routers/lips";
  * All routers added in /api/routers should be manually added here
  */
 export const appRouter = createTRPCRouter({
+  users: usersRouter,
   lips: lipsRouter,
 });
 
