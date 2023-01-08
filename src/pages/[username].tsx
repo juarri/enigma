@@ -4,12 +4,11 @@ import { api } from "../utils/api";
 
 import { getServerAuthSession } from "../server/auth";
 
-import { styled } from "@/styles/stitches.config";
-
 import Head from "next/head";
 
 import Header from "@/components/profile/Header";
 import Message from "@/components/profile/Message";
+import Responses from "@/components/profile/Responses";
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const session = await getServerAuthSession(ctx);
@@ -61,6 +60,8 @@ const UserName = ({
       <Header username={username} />
 
       <Message username={username} />
+
+      <Responses username={username} />
     </>
   );
 };

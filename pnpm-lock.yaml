@@ -5,6 +5,7 @@ specifiers:
   '@next/font': ^13.1.1
   '@prisma/client': ^4.8.0
   '@radix-ui/colors': ^0.1.8
+  '@radix-ui/react-icons': ^1.1.1
   '@stitches/react': ^1.2.8
   '@tanstack/react-query': ^4.20.4
   '@trpc/client': ^10.7.0
@@ -38,6 +39,7 @@ dependencies:
   '@next/font': 13.1.1
   '@prisma/client': 4.8.0_prisma@4.8.0
   '@radix-ui/colors': 0.1.8
+  '@radix-ui/react-icons': 1.1.1_react@18.2.0
   '@stitches/react': 1.2.8_react@18.2.0
   '@tanstack/react-query': 4.20.4_biqbaboplfbrettd7655fr4n2y
   '@trpc/client': 10.7.0_@trpc+server@10.7.0
@@ -323,6 +325,14 @@ packages:
 
   /@radix-ui/colors/0.1.8:
     resolution: {integrity: sha512-jwRMXYwC0hUo0mv6wGpuw254Pd9p/R6Td5xsRpOmaWkUHlooNWqVcadgyzlRumMq3xfOTXwJReU0Jv+EIy4Jbw==}
+    dev: false
+
+  /@radix-ui/react-icons/1.1.1_react@18.2.0:
+    resolution: {integrity: sha512-xc3wQC59rsFylVbSusQCrrM+6695ppF730Q6yqzhRdqDcRNWIm2R6ngpzBoSOQMcwnq4p805F+Gr7xo4fmtN1A==}
+    peerDependencies:
+      react: ^16.x || ^17.x || ^18.x
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /@rushstack/eslint-patch/1.2.0:

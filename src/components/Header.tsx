@@ -1,5 +1,8 @@
 import { signOut, useSession } from "next-auth/react";
 import { styled } from "@/styles/stitches.config";
+import { useTheme } from "next-themes";
+
+import { SunIcon, MoonIcon } from "@radix-ui/react-icons";
 
 import Section from "@/components/layout/Section";
 import SectionContainer from "@/components/layout/Container";
@@ -23,7 +26,8 @@ const Lips = styled("span", {
 
 const RightSide = styled("div", {
   display: "flex",
-  gap: "$4",
+  gap: "$8",
+  alignItems: "center",
 });
 
 const Profile = styled("div", {
@@ -37,10 +41,13 @@ const Profile = styled("div", {
   },
 });
 
+const ThemeToggle = styled(Button, {});
+
 const Header = () => {
   const { data: session } = useSession();
 
-  if (!session?.user) return null;
+  const { theme, setTheme } = useTheme();
+  const toggleTheme = () => setTheme(theme === "light" ? "dark" : "light");
 
   return (
     <Section as="header">
@@ -50,16 +57,22 @@ const Header = () => {
         </Lips>
 
         <RightSide>
-          <Profile>
-            <img
-              src={session.user.image || ""}
-              alt={`${session.user.username}'s profile picture`}
-              className="h-8 w-8 rounded-full"
-            />
-            <span>{session.user.username}</span>
-          </Profile>
-
-          <Button onClick={() => signOut()}>Logout</Button>
+          <ThemeToggle onClick={toggleTheme}>
+            {theme === "dark" ? <SunIcon /> : <MoonIcon />}
+          </ThemeToggle>
+          {session?.user && (
+            <>
+              <Profile>
+                <img
+                  src={session.user.image || ""}
+                  alt={`${session.user.username}'s profile picture`}
+                  className="h-8 w-8 rounded-full"
+                />
+                <span>{session.user.username}</span>
+              </Profile>
+              <Button onClick={() => signOut()}>Logout</Button>
+            </>
+          )}
         </RightSide>
       </Container>
     </Section>

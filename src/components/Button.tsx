@@ -29,7 +29,7 @@ const Button = styled("button", {
         },
 
         "@dark": {
-          color: "$main12",
+          // color: "$main12",
         },
       },
       primary: {
@@ -41,7 +41,7 @@ const Button = styled("button", {
         },
 
         "@dark": {
-          color: "$main12",
+          // color: "$main12",
         },
       },
     },

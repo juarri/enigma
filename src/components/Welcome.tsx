@@ -4,7 +4,8 @@ import { styled } from "@/styles/stitches.config";
 import PrimaryButton from "@/components/Button";
 
 const Wrapper = styled("div", {
-  position: "relative",
+  position: "absolute",
+  inset: "0",
 
   display: "grid",
   gap: "$64",

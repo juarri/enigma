@@ -1,3 +1,7 @@
+import { ChangeEvent, useState } from "react";
+
+import { api } from "../../utils/api";
+
 import { styled } from "@/styles/stitches.config";
 
 import Section from "@/components/layout/Section";
@@ -23,14 +27,17 @@ const TextArea = styled("textarea", {
   marginBottom: "$2",
 
   borderRadius: "$md",
+  borderWidth: "1px",
+  borderColor: "$main8",
 
   px: "$4",
-  py: "$4",
+  py: "$2",
 
   color: "$main12",
-  backgroundColor: "$main3",
 
   fontSize: "$sm",
+
+  resize: "none",
 
   "&::placeholder": {
     color: "$main8",
@@ -42,18 +49,40 @@ type MessageProps = {
 };
 
 const Message = ({ username }: MessageProps) => {
+  const [message, setMessage] = useState("");
+  const handleTextArea = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    e.preventDefault();
+
+    // Return if user presses the enter key
+    if (e.nativeEvent.type === "insertLineBreak") return;
+
+    setMessage(e.target.value);
+  };
+
+  const createLipMutation = api.lips.create.useMutation();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    createLipMutation.mutate({
+      message,
+      userId: "1",
+    });
+  };
+
   return (
     <Section>
-      <Container>
+      <Container css={{ maxWidth: "$sm" }}>
         <Title>Send Message</Title>
 
-        <Form className="flex flex-col">
+        <Form className="flex flex-col" onSubmit={handleSubmit}>
           <Label htmlFor="message">Ask a question</Label>
           <TextArea
             id="message"
             rows={3}
             maxLength={128}
             placeholder="Send me something already..."
+            value={message}
+            onChange={handleTextArea}
           />
           <Button type="primary" css={{ alignSelf: "end" }}>
             Send Lip

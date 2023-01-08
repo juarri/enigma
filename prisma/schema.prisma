@@ -13,7 +13,7 @@ model Lip {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   userId    String
-  prompt    String
+  message    String
   response  String
   votes Int @default(0)
 
