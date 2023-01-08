@@ -1,26 +1,27 @@
-import React from "react";
+import { styled } from "@/styles/stitches.config";
+
+import Section from "@/components/layout/Section";
+import SectionContainer from "@/components/layout/Container";
+
+const Container = styled(SectionContainer, {
+  display: "flex",
+  justifyContent: "space-between",
+});
+
+const Link = styled("a", {
+  "&:hover": {
+    textDecoration: "underline",
+  },
+});
 
 const Footer = () => {
   return (
-    <footer className="py-4 px-4 sm:px-6 lg:px-8">
-      <div className="flex justify-between">
-        <span>
-          by{" "}
-          <a href="https://juarri.com" className="text-rose-400 font-bold">
-            juarri
-          </a>
-        </span>
-
-        <div className="flex gap-4">
-          <a
-            href="https://github.com/juarri/lips"
-            className="text-rose-300 font-bold hover:underline"
-          >
-            github
-          </a>
-        </div>
-      </div>
-    </footer>
+    <Section as="footer">
+      <Container>
+        <Link href="https://juarri.com">by juarri</Link>
+        <Link href="https://github.com/juarri/lips">github</Link>
+      </Container>
+    </Section>
   );
 };
 

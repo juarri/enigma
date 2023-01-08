@@ -14,7 +14,7 @@ import { Roboto } from "@next/font/google";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-const roboto = Roboto({ subsets: ["latin"], weight: ["300", "400"] });
+const roboto = Roboto({ subsets: ["latin"], weight: ["400", "500"] });
 
 const Wrapper = styled("div", {
   pos: "relative",
@@ -26,7 +26,7 @@ const Wrapper = styled("div", {
 
 const Main = styled("main", {
   position: "relative",
-  flexGrow: 1,
+  flex: "auto",
 });
 
 const MyApp: AppType<{ session: Session | null }> = ({

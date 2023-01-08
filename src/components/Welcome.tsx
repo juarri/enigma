@@ -1,24 +1,56 @@
 import { signIn } from "next-auth/react";
+import { styled } from "@/styles/stitches.config";
+
+import PrimaryButton from "@/components/Button";
+
+const Wrapper = styled("div", {
+  position: "relative",
+
+  display: "grid",
+  gap: "$64",
+  placeItems: "center",
+  placeContent: "center",
+});
+
+const Titles = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+});
+
+const Title = styled("h1", {
+  fontSize: "$xl4",
+  fontWeight: "$medium",
+
+  span: {
+    fontSize: "$xl3",
+  },
+});
+
+const Subtitle = styled("p", {
+  textAlign: "center",
+});
+
+const Strong = styled("strong", {
+  fontWeight: "$medium",
+  // textDecoration: "underline",
+});
 
 const Welcome = () => {
   return (
-    <div className="mx-4 grid h-full place-content-center">
-      <div className="flex flex-col items-center">
-        <h1 className="mb-4 text-7xl font-bold">
-          Lips <span className="text-6xl">👄</span>
-        </h1>
-        <p className="mb-72 text-center sm:mb-16">
-          Recieve <b className="underline">anonymous</b> messages. <br />
-          Give <b className="underline">public</b> responses.
-        </p>
-        <button
-          className="relative inline-flex items-center rounded bg-main-9 px-4 py-2 font-medium text-main-1 shadow-sm hover:bg-main-10 dark:bg-maindark-9 dark:hover:bg-maindark-10"
-          onClick={() => signIn("github")}
-        >
-          Begin Sending Lips
-        </button>
-      </div>
-    </div>
+    <Wrapper>
+      <Titles>
+        <Title>
+          Lips <span>👄</span>
+        </Title>
+        <Subtitle>
+          Recieve <Strong>anonymous</Strong> messages.
+          <br />
+          Give <Strong>public</Strong> responses.
+        </Subtitle>
+      </Titles>
+      <PrimaryButton onClick={() => signIn("github")}>Join Lips</PrimaryButton>
+    </Wrapper>
   );
 };
 
