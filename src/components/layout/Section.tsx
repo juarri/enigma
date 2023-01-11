@@ -1,16 +1,11 @@
 import { styled } from "@/styles/stitches.config";
 
 const Section = styled("section", {
-  px: "$3",
+  px: "$4",
   py: "$4",
-
-  "@xs": {
-    px: "$4",
-  },
 
   "@sm": {
     px: "$6",
-    py: "$5",
   },
 
   "@md": {

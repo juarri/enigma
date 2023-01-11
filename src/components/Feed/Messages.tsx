@@ -1,7 +1,7 @@
 import { api } from "src/utils/api";
 
 import { styled } from "@/styles/stitches.config";
-import SendResponseForm from "./SendResponseForm";
+import SendResponse from "@/components/forms/SendResponse";
 
 const MessageContainer = styled("div", {
   borderRadius: "$md",
@@ -38,7 +38,7 @@ const ResponsesPage = ({ userId }: ResponsesProps) => {
         return (
           <MessageContainer key={lip.id}>
             <Message>{lip.message}</Message>
-            <SendResponseForm lipId={lip.id} />
+            <SendResponse lipId={lip.id} />
           </MessageContainer>
         );
       })}

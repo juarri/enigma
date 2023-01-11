@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 
 import { api } from "../utils/api";
@@ -7,11 +6,9 @@ import { getServerAuthSession } from "../server/auth";
 import Head from "next/head";
 
 import { styled } from "@/styles/stitches.config";
-import Section from "@/components/layout/Section";
-import Information from "@/components/profile/Information";
-import SendMessageForm from "@/components/profile/SendMessageForm";
-import Responses from "@/components/profile/Responses";
-import Messages from "@/components/profile/Messages";
+import Profile from "@/components/Profile";
+import SendMessageForm from "@/components/forms/SendMessage";
+import Feed from "@/components/Feed";
 
 const Layout = styled("div", {
   position: "relative",
@@ -30,9 +27,16 @@ const Layout = styled("div", {
   },
 });
 
-const Profile = styled("div", {
-  display: "flex",
+const Aside = styled("aside", {
+  position: "relative",
+});
+
+const Sticky = styled("div", {
+  top: "$20",
+  position: "sticky",
+
   gap: "$4",
+  display: "flex",
   flexDirection: "column",
 });
 
@@ -42,23 +46,12 @@ const Main = styled("div", {
   flexDirection: "column",
 });
 
-const Buttons = styled("div", {
-  display: "flex",
-  gap: "$4",
-});
-
-const Lips = styled("div", {
-  gap: "$4",
-  display: "flex",
-  flexDirection: "column",
-});
-
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const session = await getServerAuthSession(ctx);
   const username = ctx.query.username;
-  const isSessionUsersPage = session?.user?.username === username;
+  const isAuthorized = session?.user?.username === username;
 
-  const props = { username, isSessionUsersPage };
+  const props = { username, isAuthorized };
 
   return {
     props,
@@ -67,12 +60,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
 const UserName = ({
   username,
-  isSessionUsersPage,
+  isAuthorized,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const { data: profile, isLoading: isProfileLoading } =
     api.users.getByUsername.useQuery({ username });
-
-  const [selected, setSelected] = useState("responses");
 
   if (isProfileLoading) return <ProfileLoading />;
 
@@ -89,32 +80,18 @@ const UserName = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Section>
-        <Layout>
-          <Profile>
-            <Information userId={profile.id} />
+      <Layout>
+        <Aside>
+          <Sticky>
+            <Profile userId={profile.id} />
             <SendMessageForm userId={profile.id} />
-          </Profile>
+          </Sticky>
+        </Aside>
 
-          <Main>
-            <Buttons>
-              <button onClick={() => setSelected("responses")}>
-                Responses
-              </button>
-              {isSessionUsersPage && (
-                <button onClick={() => setSelected("messages")}>
-                  Messages
-                </button>
-              )}
-            </Buttons>
-
-            <Lips>
-              {selected === "responses" && <Responses userId={profile.id} />}
-              {selected === "messages" && <Messages userId={profile.id} />}
-            </Lips>
-          </Main>
-        </Layout>
-      </Section>
+        <Main>
+          <Feed userId={profile.id} isAuthorized={isAuthorized} />
+        </Main>
+      </Layout>
     </>
   );
 };

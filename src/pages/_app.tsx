@@ -11,8 +11,8 @@ import { styled, darkTheme, globalStyles } from "@/styles/stitches.config";
 
 import { Roboto } from "@next/font/google";
 
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "../components/layout/Header";
+import Footer from "../components/layout/Footer";
 
 const roboto = Roboto({ subsets: ["latin"], weight: ["400", "500"] });
 

@@ -59,7 +59,7 @@ type SendResponseProps = {
   lipId: string;
 };
 
-const SendResponseForm = ({ lipId }: SendResponseProps) => {
+const SendResponse = ({ lipId }: SendResponseProps) => {
   const apiContext = api.useContext();
 
   const [response, setResponse] = useState("");
@@ -115,4 +115,4 @@ const SendResponseForm = ({ lipId }: SendResponseProps) => {
   );
 };
 
-export default SendResponseForm;
+export default SendResponse;

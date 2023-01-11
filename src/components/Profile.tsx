@@ -1,50 +1,56 @@
 import { styled } from "@/styles/stitches.config";
 import { api } from "src/utils/api";
 
-const Section = styled("header", {
+const Section = styled("section", {
   display: "flex",
   gap: "$3",
   flexDirection: "column",
   alignItems: "center",
 });
 
-const ProfileImage = styled("img", {
-  size: "$28",
+const Image = styled("img", {
+  size: "$24",
+
+  marginBottom: "$2",
 
   borderRadius: "$full",
   borderWidth: "1px",
   borderColor: "$main11",
-});
 
-const Names = styled("div", {
-  marginTop: "$2",
-  textAlign: "center",
+  alignSelf: "center",
 });
 
 const Username = styled("h1", {
+  textAlign: "center",
   fontSize: "$sm",
   lineHeight: 1,
 });
 
 const Name = styled("strong", {
+  textAlign: "center",
   fontWeight: "$medium",
   lineHeight: 1,
 });
 
-const BioTitle = styled("h2", {
+const Group = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+});
+
+const Heading = styled("h2", {
   fontSize: "$sm",
   fontWeight: "$medium",
 });
 
-const Bio = styled("p", {
+const Text = styled("p", {
   fontSize: "$sm",
 });
 
-type HeaderProps = {
+type ProfileProps = {
   userId: string;
 };
 
-const Header = ({ userId }: HeaderProps) => {
+const Profile = ({ userId }: ProfileProps) => {
   const { data: user } = api.users.get.useQuery({
     id: userId,
   });
@@ -53,26 +59,21 @@ const Header = ({ userId }: HeaderProps) => {
 
   return (
     <Section>
-      <div>
-        <ProfileImage
-          src={user.image || ""}
-          alt={`${user.username}'s profile icon`}
-        />
-        <Names>
-          <Username>{user.username}</Username>
-          <Name>{user.name}</Name>
-        </Names>
-      </div>
+      <Group>
+        <Image src={user.image || ""} alt={`${user.username}'s profile icon`} />
+        <Username>{user.username}</Username>
+        <Name>{user.name}</Name>
+      </Group>
 
-      <div>
-        <BioTitle>Bio</BioTitle>
-        <Bio>
+      <Group>
+        <Heading>Bio</Heading>
+        <Text>
           faucibus in ornare quam viverra orci sagittis eu volutpat odio
           facilisis mauris sit amet massa vitae tortor condimentum laci
-        </Bio>
-      </div>
+        </Text>
+      </Group>
     </Section>
   );
 };
 
-export default Header;
+export default Profile;
