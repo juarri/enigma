@@ -29,12 +29,16 @@ const Responses = ({ userId }: ResponsesProps) => {
 
   if (!user) return null;
 
-  return user.lips.map((lip) => (
-    <ResponseContainer key={lip.id}>
-      <Message>{lip.message}</Message>
-      <Response>{lip.response}</Response>
-    </ResponseContainer>
-  ));
+  return (
+    <>
+      {user.lips.map((lip) => (
+        <ResponseContainer key={lip.id}>
+          <Message>{lip.message}</Message>
+          <Response>{lip.response}</Response>
+        </ResponseContainer>
+      ))}
+    </>
+  );
 };
 
 export default Responses;
