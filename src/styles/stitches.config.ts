@@ -1,5 +1,14 @@
 import { createStitches, PropertyValue } from "@stitches/react";
-import { crimson, crimsonDark, gray, grayDark } from "@radix-ui/colors";
+import {
+  crimson,
+  crimsonA,
+  crimsonDark,
+  crimsonDarkA,
+  gray,
+  grayA,
+  grayDark,
+  grayDarkA,
+} from "@radix-ui/colors";
 
 const space = {
   0: "0px",
@@ -78,7 +87,21 @@ export const {
       main11: crimson.crimson11,
       main12: crimson.crimson12,
 
+      mainA1: crimsonA.crimsonA1,
+      mainA2: crimsonA.crimsonA2,
+      mainA3: crimsonA.crimsonA3,
+      mainA4: crimsonA.crimsonA4,
+      mainA5: crimsonA.crimsonA5,
+      mainA6: crimsonA.crimsonA6,
+      mainA7: crimsonA.crimsonA7,
+      mainA8: crimsonA.crimsonA8,
+      mainA9: crimsonA.crimsonA9,
+      mainA10: crimsonA.crimsonA10,
+      mainA11: crimsonA.crimsonA11,
+      mainA12: crimsonA.crimsonA12,
+
       ...gray,
+      ...grayA,
     },
     space: {
       ...space,
@@ -196,6 +219,19 @@ export const darkTheme = createTheme({
     main11: crimsonDark.crimson11,
     main12: crimsonDark.crimson12,
 
+    mainA1: crimsonDarkA.crimsonA1,
+    mainA2: crimsonDarkA.crimsonA2,
+    mainA3: crimsonDarkA.crimsonA3,
+    mainA4: crimsonDarkA.crimsonA4,
+    mainA5: crimsonDarkA.crimsonA5,
+    mainA6: crimsonDarkA.crimsonA6,
+    mainA7: crimsonDarkA.crimsonA7,
+    mainA8: crimsonDarkA.crimsonA8,
+    mainA9: crimsonDarkA.crimsonA9,
+    mainA10: crimsonDarkA.crimsonA10,
+    mainA11: crimsonDarkA.crimsonA11,
+    mainA12: crimsonDarkA.crimsonA12,
+
     gray1: grayDark.gray1,
     gray2: grayDark.gray2,
     gray3: grayDark.gray3,
@@ -208,5 +244,25 @@ export const darkTheme = createTheme({
     gray10: grayDark.gray10,
     gray11: grayDark.gray11,
     gray12: grayDark.gray12,
+
+    grayA1: grayDarkA.grayA1,
+    grayA2: grayDarkA.grayA2,
+    grayA3: grayDarkA.grayA3,
+    grayA4: grayDarkA.grayA4,
+    grayA5: grayDarkA.grayA5,
+    grayA6: grayDarkA.grayA6,
+    grayA7: grayDarkA.grayA7,
+    grayA8: grayDarkA.grayA8,
+    grayA9: grayDarkA.grayA9,
+    grayA10: grayDarkA.grayA10,
+    grayA11: grayDarkA.grayA11,
+    grayA12: grayDarkA.grayA12,
+  },
+});
+
+export const globalStyles = globalCss({
+  body: {
+    color: "$gray12",
+    backgroundColor: "$gray1",
   },
 });

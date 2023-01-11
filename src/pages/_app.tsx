@@ -7,7 +7,7 @@ import { api } from "../utils/api";
 import "@/styles/normalizer.css";
 
 import { ThemeProvider } from "next-themes";
-import { styled, darkTheme } from "@/styles/stitches.config";
+import { styled, darkTheme, globalStyles } from "@/styles/stitches.config";
 
 import { Roboto } from "@next/font/google";
 
@@ -33,6 +33,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
   Component,
   pageProps: { session, ...pageProps },
 }) => {
+  globalStyles();
   return (
     <SessionProvider session={session}>
       <ThemeProvider

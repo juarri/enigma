@@ -1,4 +1,4 @@
-import { signOut, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { styled } from "@/styles/stitches.config";
 import { useTheme } from "next-themes";
 
@@ -26,7 +26,7 @@ const Lips = styled("span", {
 
 const RightSide = styled("div", {
   display: "flex",
-  gap: "$8",
+  gap: "$4",
   alignItems: "center",
 });
 
@@ -36,8 +36,12 @@ const Profile = styled("div", {
   gap: "$2",
 
   img: {
-    size: "$8",
+    size: "$10",
     borderRadius: "$full",
+  },
+
+  span: {
+    fontSize: "$sm",
   },
 });
 
@@ -49,6 +53,8 @@ const Header = () => {
   const { theme, setTheme } = useTheme();
   const toggleTheme = () => setTheme(theme === "light" ? "dark" : "light");
 
+  const iconSize = 14;
+
   return (
     <Section as="header">
       <Container>
@@ -57,10 +63,14 @@ const Header = () => {
         </Lips>
 
         <RightSide>
-          <ThemeToggle onClick={toggleTheme}>
-            {theme === "dark" ? <SunIcon /> : <MoonIcon />}
+          <ThemeToggle rounded={true} onClick={toggleTheme}>
+            {theme === "dark" ? (
+              <SunIcon height={iconSize} />
+            ) : (
+              <MoonIcon height={iconSize} />
+            )}
           </ThemeToggle>
-          {session?.user && (
+          {session?.user ? (
             <>
               <Profile>
                 <img
@@ -72,6 +82,8 @@ const Header = () => {
               </Profile>
               <Button onClick={() => signOut()}>Logout</Button>
             </>
+          ) : (
+            <Button onClick={() => signIn()}>Login</Button>
           )}
         </RightSide>
       </Container>

@@ -14,7 +14,7 @@ model Lip {
   updatedAt DateTime @updatedAt
   userId    String
   message    String
-  response  String
+  response  String?
   votes Int @default(0)
 
   user      User     @relation(fields: [userId], references: [id])
@@ -52,7 +52,7 @@ model Session {
 model User {
   id            String    @id @default(cuid())
   name          String?
-  username      String?
+  username      String?   @unique
   email         String?   @unique
   emailVerified DateTime?
   image         String?

@@ -1,35 +1,10 @@
+import { api } from "src/utils/api";
 import { styled } from "@/styles/stitches.config";
 
-import Section from "@/components/layout/Section";
-import Container from "@/components/layout/Container";
-import Button from "@/components/Button";
-
-const Title = styled("h2", {
-  fontSize: "$sm",
-  fontWeight: "$medium",
-});
-
-type ResponsesProps = {
-  username: string;
-};
-
-const Grid = styled("div", {
-  display: "grid",
-  gap: "$4",
-
-  "@sm": {
-    gridTemplateColumns: "repeat(2, 1fr)",
-  },
-
-  "@xl": {
-    gridTemplateColumns: "repeat(3, 1fr)",
-  },
-});
-
-const GridItem = styled("div", {
+const ResponseContainer = styled("div", {
+  borderRadius: "$md",
   padding: "$4 $6",
-
-  backgroundColor: "$gray2",
+  backgroundColor: "$mainA3",
 });
 
 const Message = styled("h3", {
@@ -41,46 +16,27 @@ const Response = styled("p", {
   // fontSize: "$sm",
 });
 
-const Responses = ({ username }: ResponsesProps) => {
+type ResponsesProps = {
+  userId: string;
+};
+
+const ResponsesPage = ({ userId }: ResponsesProps) => {
+  const { data: user } = api.users.getRespondedLips.useQuery({
+    id: userId,
+  });
+
+  if (!user) return null;
+
   return (
-    <Section>
-      <Container css={{ maxWidth: "$xl6" }}>
-        <Title>Responses</Title>
-        <Grid>
-          <GridItem>
-            <Message>
-              What's one thing you want to do that your havn't done
-            </Message>
-            <Response>Star in a movie</Response>
-          </GridItem>
-          <GridItem>
-            <Message>
-              What's one thing you want to do that your havn't done
-            </Message>
-            <Response>Star in a movie</Response>
-          </GridItem>
-          <GridItem>
-            <Message>
-              What's one thing you want to do that your havn't done
-            </Message>
-            <Response>Star in a movie</Response>
-          </GridItem>
-          <GridItem>
-            <Message>
-              What's one thing you want to do that your havn't done
-            </Message>
-            <Response>Star in a movie</Response>
-          </GridItem>
-          <GridItem>
-            <Message>
-              What's one thing you want to do that your havn't done
-            </Message>
-            <Response>Star in a movie</Response>
-          </GridItem>
-        </Grid>
-      </Container>
-    </Section>
+    <>
+      {user.lips.map((lip) => (
+        <ResponseContainer key={lip.id}>
+          <Message>{lip.message}</Message>
+          <Response>{lip.response}</Response>
+        </ResponseContainer>
+      ))}
+    </>
   );
 };
 
-export default Responses;
+export default ResponsesPage;

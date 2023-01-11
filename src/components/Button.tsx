@@ -1,4 +1,4 @@
-import { styled } from "@/styles/stitches.config";
+import { darkTheme, styled } from "@/styles/stitches.config";
 
 const Button = styled("button", {
   boxSizing: "border-box",
@@ -12,6 +12,7 @@ const Button = styled("button", {
   alignItems: "center",
 
   fontWeight: "$medium",
+  lineHeight: "1",
 
   borderRadius: "$md",
 
@@ -19,17 +20,18 @@ const Button = styled("button", {
     type: {
       base: {
         color: "$main11",
-        backgroundColor: "$main4",
+        backgroundColor: "$main1",
 
+        borderWidth: "1px",
         borderColor: "$main7",
 
         "&:hover": {
-          backgroundColor: "$main5",
+          backgroundColor: "$main2",
           borderColor: "$main8",
         },
 
-        "@dark": {
-          // color: "$main12",
+        [`.${darkTheme} &`]: {
+          color: "$main12",
         },
       },
       primary: {
@@ -40,8 +42,8 @@ const Button = styled("button", {
           backgroundColor: "$main10",
         },
 
-        "@dark": {
-          // color: "$main12",
+        [`.${darkTheme} &`]: {
+          color: "$main12",
         },
       },
     },
@@ -51,11 +53,11 @@ const Button = styled("button", {
         fontSize: "$xs",
       },
       base: {
-        padding: "$2 $5",
+        padding: "$2_5 $5",
         fontSize: "$sm",
       },
       lg: {
-        padding: "$2_5 $6",
+        padding: "$3_5 $6",
         fontSize: "$lg",
       },
     },
@@ -64,11 +66,39 @@ const Button = styled("button", {
         width: "100%",
       },
     },
+    rounded: {
+      true: {
+        borderRadius: "999px",
+      },
+    },
   },
   defaultVariants: {
     type: "base",
     size: "base",
   },
+  compoundVariants: [
+    {
+      rounded: true,
+      size: "sm",
+      css: {
+        padding: "$1",
+      },
+    },
+    {
+      rounded: true,
+      size: "base",
+      css: {
+        padding: "$1",
+      },
+    },
+    {
+      rounded: true,
+      size: "base",
+      css: {
+        padding: "$3",
+      },
+    },
+  ],
 });
 
 export default Button;
