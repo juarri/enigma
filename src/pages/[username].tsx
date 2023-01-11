@@ -100,12 +100,12 @@ export default UserName;
 
 const ProfileLoading = () => (
   <div className="py-4 px-4 text-center sm:px-6 lg:px-8">
-    <h1>This profile doesn't exist...</h1>
+    <h1>This profile doesn&apos;t exist...</h1>
   </div>
 );
 
 const ProfileDoesntExist = () => (
   <div className="py-4 px-4 text-center sm:px-6 lg:px-8">
-    <h1>This profile doesn't exist...</h1>
+    <h1>This profile doesn&apos;t exist...</h1>
   </div>
 );
